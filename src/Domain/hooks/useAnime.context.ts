@@ -4,8 +4,13 @@ import { useQuery } from "@apollo/client";
 const UseAnime = () => {
   const animeService = AnimeServiceImpl.getInstance();
 
-  const useAnimeList = () => {
-    return useQuery(animeService.getAnimeList());
+  const useAnimeList = (page: number) => {
+    return useQuery(animeService.getAnimeList(), {
+      variables: {
+        page: page,
+        perPage: 10,
+      },
+    });
   };
 
   const useDetailAnime = (id: number) => {

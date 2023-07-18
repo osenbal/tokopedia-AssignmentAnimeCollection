@@ -1,13 +1,88 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* variables */
+:root {
+  --color-black: #0f0e17;
+  --color-white: #fffffe;
+  --color-gray: #a7a9be;
+  --color-orange: #ff8906;
+  --color-teal: #f25f4c;
+  --color-pink: #e53170;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: "Roboto", sans-serif;
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+
+main {
+  scroll-behavior: smooth;
+  margin: 0 8px;
+  margin-top: 14px;
+  max-width: 1440px;
+  /* padding-bottom: 100px; */
+}
+
+.sticky {
+  position: fixed;
+  top: 0 !important;
+  width: 100%;
+  z-index: 1;
+  scroll-behavior: smooth;
+}
+
+.skeleton-card {
+  width: 100%;
+  min-width: 162px;
+  height: 220px;
+  background-color: var(--color-gray);
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  animation: skeleton 1s infinite alternate;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes skeleton {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 568px) {
+  main {
+    margin: 0 16px;
+    margin-top: 112px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  main {
+    padding: 0 184px;
+    margin: 0 auto;
+    margin-top: 202px;
+  }
 }

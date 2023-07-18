@@ -13,32 +13,38 @@ export default class AnimeGraphqlDatasourceImpl implements IAnimeDatasource {
   }
 
   public getList(): DocumentNode {
+    const FRAGMENT_MEDIA_LIST = gql`
+      fragment MediaList on Media {
+        id
+        title {
+          english
+          native
+        }
+        coverImage {
+          medium
+          color
+        }
+      }
+    `;
+
     const GET_LOCATIONS = gql`
-      query ($page: Int, $perPage: Int, $search: String, $sort: [MediaSort]) {
-        Page(page: $page, perPage: $perPage) {
+      query ($page: Int, $perPage: Int, $sortAnimeList: [MediaSort]) {
+        animeTrending: Page(page: $page, perPage: $perPage) {
+          media: media(type: ANIME, sort: TRENDING_DESC, isAdult: false) {
+            ...MediaList
+          }
+        }
+        animeList: Page(page: $page, perPage: $perPage) {
           pageInfo {
             total
             perPage
-            currentPage
           }
-          media(search: $search, type: ANIME, sort: $sort) {
-            id
-            title {
-              romaji
-              english
-              native
-            }
-            genres
-            coverImage {
-              extraLarge
-              large
-              medium
-              color
-            }
-            bannerImage
+          media: media(type: ANIME, sort: $sortAnimeList, isAdult: false) {
+            ...MediaList
           }
         }
       }
+      ${FRAGMENT_MEDIA_LIST}
     `;
 
     return GET_LOCATIONS;

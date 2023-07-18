@@ -5,6 +5,7 @@
       "@pages/*": ["./Presentations/pages/*"],
       "@components/*": ["./Presentations/components/*"],
       "@layouts/*": ["./Presentations/layouts/*"],
+      "@assets/*": ["./assets/*"],
       "@/*": ["./*"]
     }
   }
