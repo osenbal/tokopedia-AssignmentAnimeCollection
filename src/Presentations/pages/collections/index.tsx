@@ -6,6 +6,7 @@ import CollectionViewModel from "./collection.view.model";
 import CardAnime from "@components/Card/CardAnime";
 import { mq } from "@/Presentations/constant/breakpoint";
 import { useNavigate } from "react-router-dom";
+import Btn from "@components/Button/Btn.components";
 
 const CollectionsPageCss = {
   self: css({}),
@@ -33,6 +34,13 @@ const CollectionsPageCss = {
   itemCollection: css({
     width: "48%",
   }),
+  collectionEmpty: css({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    rowGap: "16px",
+  }),
 };
 
 const CollectionsPage: FC = () => {
@@ -42,26 +50,41 @@ const CollectionsPage: FC = () => {
   return (
     <div css={CollectionsPageCss.self} className="container_home">
       <div css={CollectionsPageCss.header}>
-        <h2>Collections Page</h2>
+        {collection?.length !== 0 ? <h2>Collections Page</h2> : null}
       </div>
-
-      <div css={CollectionsPageCss.listCollection}>
-        {collection?.map((item: any, index: number) => {
-          return (
-            <CardAnime
-              key={index}
-              css={CollectionsPageCss.itemCollection}
+      {collection?.length === 0 ? (
+        <div css={CollectionsPageCss.collectionEmpty}>
+          <p>Empty Collections</p>
+          <div>
+            <Btn
+              isDropdown={false}
               onClick={() => {
-                navigate(`/collections/${item?.name}`);
+                navigate(`/`);
               }}
-              id={item?.entries[0].media?.id}
-              name={item?.name}
-              image={item?.entries[0]?.media?.coverImage?.medium}
-              color={item?.entries[0]?.media?.coverImage?.color}
+              text="Browse Anime"
+              size="medium"
             />
-          );
-        })}
-      </div>
+          </div>
+        </div>
+      ) : (
+        <div css={CollectionsPageCss.listCollection}>
+          {collection?.map((item: any, index: number) => {
+            return (
+              <CardAnime
+                key={index}
+                css={CollectionsPageCss.itemCollection}
+                onClick={() => {
+                  navigate(`/collections/${item?.name}`);
+                }}
+                id={item?.entries[0].media?.id}
+                name={item?.name}
+                image={item?.entries[0]?.media?.coverImage?.medium}
+                color={item?.entries[0]?.media?.coverImage?.color}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
