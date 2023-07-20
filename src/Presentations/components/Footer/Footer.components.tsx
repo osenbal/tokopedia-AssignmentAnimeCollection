@@ -99,17 +99,29 @@ const Footer: FC = () => {
 
         <ul>
           <li>
-            <a href="/" rel="noopener noreferrer">
+            <a
+              href="https://github.com/osenbal/tokopedia-AssignmentAnimeCollection"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Github
             </a>
           </li>
           <li>
-            <a href="/collections" rel="noopener noreferrer">
+            <a
+              href="https://iqballl.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               About Me
             </a>
           </li>
           <li>
-            <a href="/profile" rel="noopener noreferrer">
+            <a
+              href="https://www.instagram.com/iqbal_mln17"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Contact Me
             </a>
           </li>
