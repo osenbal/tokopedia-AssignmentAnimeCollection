@@ -21,7 +21,7 @@ const ProfileViewModel = () => {
 
   const logout = () => {
     removeAccessToken();
-    navigate("/login");
+    navigate("/", { replace: true });
   };
 
   useEffect(() => {

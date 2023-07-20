@@ -1,0 +1,38 @@
+.container_spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.spinner {
+  width: 80px;
+  aspect-ratio: 1;
+  border: 10px solid var(--color-black);
+  background: radial-gradient(farthest-side, #fff 98%, var(--color-black)) 50%/20px
+      20px,
+    radial-gradient(farthest-side, #fff 98%, var(--color-black)) 50%/20px 20px,
+    radial-gradient(farthest-side, #fff 98%, var(--color-black)) 50%/20px 20px,
+    radial-gradient(farthest-side, #fff 98%, var(--color-black)) 50%/20px 20px,
+    radial-gradient(farthest-side, #fff 98%, var(--color-black)) 50%/80% 80%,
+    var(--color-black);
+  background-repeat: no-repeat;
+  filter: blur(4px) contrast(10);
+  animation: b7 1s infinite alternate;
+}
+@keyframes b7 {
+  0% {
+    background-position: 50%, 50%, 50%, 50%, 50%, 50%, 50%;
+  }
+  25% {
+    background-position: 0 0, 50%, 50%, 50%, 50%, 50%, 50%;
+  }
+  50% {
+    background-position: 0 0, 100% 0, 50%, 50%, 50%, 50%, 50%;
+  }
+  75% {
+    background-position: 0 0, 100% 0, 100% 100%, 50%, 50%, 50%, 50%;
+  }
+  100% {
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%, 50%, 50%, 50%;
+  }
+}

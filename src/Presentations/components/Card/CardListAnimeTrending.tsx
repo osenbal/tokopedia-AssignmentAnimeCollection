@@ -4,6 +4,7 @@ import { jsx, css } from "@emotion/react";
 import { Fragment, FC } from "react";
 import CardAnime from "./CardAnime";
 import { mq } from "@/Presentations/constant/breakpoint";
+import { useNavigate } from "react-router-dom";
 
 // styled for CardListAnime mobile first
 const cardListAnimeCss = {
@@ -70,6 +71,8 @@ const CardListAnimeTrending: FC<CardListAnimeProps> = ({
   listAnimeTrending,
   isLoading,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div css={cardListAnimeCss.self}>
       <div css={cardListAnimeCss.header}>
@@ -92,6 +95,7 @@ const CardListAnimeTrending: FC<CardListAnimeProps> = ({
           listAnimeTrending.map((anime, index) => {
             return (
               <CardAnime
+                onClick={() => navigate(`/anime/${anime?.id}`)}
                 key={index}
                 id={anime?.id}
                 color={anime?.coverImage?.color}

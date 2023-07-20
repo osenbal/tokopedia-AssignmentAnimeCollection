@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Spinner from "@components/Spinner/Spinner";
 import AuthMiddleware from "@/Domain/middleware/auth.middleware";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -13,11 +14,12 @@ const DetailAnimePage = lazy(() => import("@pages/anime/_id"));
 const ProfilePage = lazy(() => import("@pages/profile"));
 const LoginTokenPage = lazy(() => import("@pages/login-token"));
 const CollectionsPage = lazy(() => import("@pages/collections"));
+const CollectionsStatusPage = lazy(() => import("@pages/collections/_status"));
 
 function App() {
   return (
     <Router>
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Spinner />}>
         <Routes>
           <Route path="/" element={<DefaultLayout />}>
             <Route path="/" element={<MainLayout />}>
@@ -26,6 +28,10 @@ function App() {
               <Route path="/" element={<AuthMiddleware />}>
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/collections" element={<CollectionsPage />} />
+                <Route
+                  path="/collections/:status"
+                  element={<CollectionsStatusPage />}
+                />
               </Route>
               <Route path="/login" element={<LoginPage />} />
             </Route>

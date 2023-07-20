@@ -6,6 +6,7 @@ import CardAnime from "./CardAnime";
 import Pagination from "@components/Pagination/Pagination.component";
 import { mq } from "@/Presentations/constant/breakpoint";
 import { NetworkStatus } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 
 // styled for CardListAnime mobile first
 const cardListAnimeCss = {
@@ -96,6 +97,8 @@ const CardListAnime: React.FC<CardListAnimeProps> = ({
   networkStatus,
   loading,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div css={cardListAnimeCss.self}>
       <div css={cardListAnimeCss.header}>
@@ -123,6 +126,7 @@ const CardListAnime: React.FC<CardListAnimeProps> = ({
           {listAnime.map((anime, index) => {
             return (
               <CardAnime
+                onClick={() => navigate(`/anime/${anime?.id}`)}
                 id={anime?.id}
                 key={index}
                 color={anime?.coverImage?.color}

@@ -14,10 +14,11 @@ const useCollectionAnime = () => {
     });
   };
 
-  const useGetCollections = (userId: number | null) => {
+  const useGetCollections = (userId: number, status?: string) => {
     return useQuery(collectionAnimeService.getCollections(), {
       variables: {
         userId: userId,
+        status: status,
       },
     });
   };

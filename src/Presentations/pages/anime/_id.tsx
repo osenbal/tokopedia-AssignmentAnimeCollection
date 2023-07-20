@@ -180,17 +180,12 @@ const DetailAnimePageCss = {
 const DetailAnimePage: FC = () => {
   const {
     detailAnime,
-    loading,
     error,
     toggleShowMoreDescription,
     showMoreDescription,
     elipsisDescription,
     insertToCollection,
   } = AnimeDetailPageViewModel();
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
 
   if (error) {
     return <h1>Error {error.message}</h1>;

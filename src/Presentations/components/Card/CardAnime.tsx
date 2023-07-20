@@ -3,7 +3,6 @@
 import { jsx, css } from "@emotion/react";
 import React from "react";
 import { mq } from "@/Presentations/constant/breakpoint";
-import { useNavigate } from "react-router-dom";
 
 // styled for CardAnime mobile first
 const cardAnimeCss = {
@@ -27,7 +26,7 @@ const cardAnimeCss = {
   containerImage: css({
     display: "flex",
     justifyContent: "center",
-    minHeight: "220px",
+    height: "220px",
     "& img": {
       width: "100%",
       height: "100%",
@@ -59,17 +58,18 @@ type CardAnimeProps = {
   name: string;
   image: string;
   color: string;
+  onClick?: () => void;
 };
 
-const CardAnime: React.FC<CardAnimeProps> = ({ id, name, image, color }) => {
-  const navigate = useNavigate();
+const CardAnime: React.FC<CardAnimeProps> = ({
+  id,
+  name,
+  image,
+  color,
+  onClick,
+}) => {
   return (
-    <div
-      css={cardAnimeCss.self}
-      onClick={() => {
-        navigate(`/anime/${id}`);
-      }}
-    >
+    <div css={cardAnimeCss.self} onClick={onClick}>
       <div
         css={cardAnimeCss.containerImage}
         style={{

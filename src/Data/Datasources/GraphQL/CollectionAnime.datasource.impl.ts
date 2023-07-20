@@ -30,14 +30,12 @@ const FRAGMENT_MEDIA_LIST_ENTRY = gql`
     media {
       id
       title {
-        userPreferred
-        romaji
         english
         native
       }
       coverImage {
-        extraLarge
-        large
+        medium
+        color
       }
       type
       format
@@ -76,37 +74,19 @@ export default class CollectionAnimeGraphqlDatasourceImpl
 
   public getCollections(): DocumentNode {
     return gql`
-      query ($userId: Int, $userName: String) {
-        MediaListCollection(userId: $userId, userName: $userName, type: ANIME) {
+      query ($userId: Int, $userName: String, $status: MediaListStatus) {
+        mediaListCollection: MediaListCollection(
+          userId: $userId
+          userName: $userName
+          type: ANIME
+          status: $status
+        ) {
           lists {
             name
             isCustomList
             isCompletedList: isSplitCompletedList
             entries {
               ...mediaListEntry
-            }
-          }
-          user {
-            id
-            name
-            avatar {
-              large
-            }
-            mediaListOptions {
-              scoreFormat
-              rowOrder
-              animeList {
-                sectionOrder
-                customLists
-                splitCompletedSectionByFormat
-                theme
-              }
-              mangaList {
-                sectionOrder
-                customLists
-                splitCompletedSectionByFormat
-                theme
-              }
             }
           }
         }
