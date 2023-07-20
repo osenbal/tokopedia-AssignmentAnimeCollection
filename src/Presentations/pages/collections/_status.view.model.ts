@@ -20,8 +20,6 @@ const StatusViewModel = () => {
     }
   }, [data]);
 
-  console.log(data);
-
   return {
     collection,
     statusCollection,

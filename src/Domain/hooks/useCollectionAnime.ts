@@ -16,6 +16,7 @@ const useCollectionAnime = () => {
 
   const useGetCollections = (userId: number, status?: string) => {
     return useQuery(collectionAnimeService.getCollections(), {
+      fetchPolicy: "no-cache",
       variables: {
         userId: userId,
         status: status,
