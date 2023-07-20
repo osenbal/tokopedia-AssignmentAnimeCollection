@@ -11,7 +11,10 @@ const StatusViewModel = () => {
   const [statusCollection, setStatusCollection] = useState<string>("");
 
   const { useGetCollections } = useCollectionAnime();
-  const { data } = useGetCollections(parseInt(userId), status.toUpperCase());
+  const { data, loading, networkStatus, error } = useGetCollections(
+    parseInt(userId),
+    status.toUpperCase()
+  );
 
   useEffect(() => {
     if (data) {
@@ -23,6 +26,9 @@ const StatusViewModel = () => {
   return {
     collection,
     statusCollection,
+    loading,
+    networkStatus,
+    error,
   };
 };
 

@@ -85,6 +85,7 @@ export default class CollectionAnimeGraphqlDatasourceImpl
             name
             isCustomList
             isCompletedList: isSplitCompletedList
+            status
             entries {
               ...mediaListEntry
             }

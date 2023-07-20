@@ -7,6 +7,7 @@ import CardAnime from "@components/Card/CardAnime";
 import { mq } from "@/Presentations/constant/breakpoint";
 import { useNavigate } from "react-router-dom";
 import Btn from "@components/Button/Btn.components";
+import { NetworkStatus } from "@apollo/client";
 
 const CollectionsPageCss = {
   self: css({}),
@@ -44,15 +45,29 @@ const CollectionsPageCss = {
 };
 
 const CollectionsPage: FC = () => {
-  const { collection } = CollectionViewModel();
+  const { collection, loading, networkStatus, error } = CollectionViewModel();
   const navigate = useNavigate();
 
   return (
     <div css={CollectionsPageCss.self} className="container_home">
       <div css={CollectionsPageCss.header}>
-        {collection?.length !== 0 ? <h2>Collections Page</h2> : null}
+        {collection?.length !== 0 ? <h2>Collections</h2> : null}
       </div>
-      {collection?.length === 0 ? (
+
+      {error ? (
+        <div>
+          <h2>Something went wrong</h2>
+        </div>
+      ) : loading || networkStatus === NetworkStatus.refetch ? (
+        <div css={CollectionsPageCss.listCollection}>
+          <div className="skeleton-card"></div>
+          <div className="skeleton-card"></div>
+          <div className="skeleton-card"></div>
+          <div className="skeleton-card"></div>
+          <div className="skeleton-card"></div>
+          <div className="skeleton-card"></div>
+        </div>
+      ) : collection?.length === 0 ? (
         <div css={CollectionsPageCss.collectionEmpty}>
           <p>Empty Collections</p>
           <div>
@@ -74,7 +89,7 @@ const CollectionsPage: FC = () => {
                 key={index}
                 css={CollectionsPageCss.itemCollection}
                 onClick={() => {
-                  navigate(`/collections/${item?.name}`);
+                  navigate(`/collections/${item?.status}`);
                 }}
                 id={item?.entries[0].media?.id}
                 name={item?.name}
