@@ -93,6 +93,7 @@ const CardListAnimeTrending: FC<CardListAnimeProps> = ({
             return (
               <CardAnime
                 key={index}
+                id={anime?.id}
                 color={anime?.coverImage?.color}
                 name={anime?.title?.english || anime?.title?.native}
                 image={anime?.coverImage?.medium}

@@ -15,7 +15,7 @@ const navbarCss = {
     display: "flex",
     flexDirection: "row",
     position: "relative",
-    zIndex: 1,
+    zIndex: 7,
     [mq[0]]: {
       position: "fixed",
       top: 18,
@@ -123,21 +123,21 @@ const Navbar: FC = () => {
           <li>
             <NavItem
               to="/"
-              icon="./assets/icons/ico_menu_home.svg"
+              icon="/assets/icons/ico_menu_home.svg"
               text="Home"
             />
           </li>
           <li>
             <NavItem
               to="/collections"
-              icon="./assets/icons/ico_menu_collections.svg"
+              icon="/assets/icons/ico_menu_collections.svg"
               text="Collections"
             />
           </li>
           <li>
             <NavItem
               to="/profile"
-              icon="./assets/icons/ico_menu_profile.svg"
+              icon="/assets/icons/ico_menu_profile.svg"
               text="Profile"
             />
           </li>

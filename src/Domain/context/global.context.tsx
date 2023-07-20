@@ -1,20 +1,37 @@
 import { createContext, useContext, useMemo, useState } from "react";
+import { getAccessToken } from "../services/JWT/jwt.service";
 
 interface IGlobalState {
   isAuth: boolean;
+  userId: number | null;
 }
 
-const GlobalContext = createContext({
-  globalState: {
-    isAuth: false,
+interface IGlobalContext {
+  state: IGlobalState;
+  setState: (
+    patch:
+      | Partial<IGlobalState>
+      | ((prevState: IGlobalState) => Partial<IGlobalState>)
+  ) => void;
+}
+
+const accessToken = getAccessToken();
+
+const GlobalContext = createContext<IGlobalContext>({
+  state: {
+    isAuth: accessToken === null ? false : true,
+    userId: null,
   },
-  setGlobalState: () => undefined,
+  setState: () => undefined,
 });
 
 GlobalContext.displayName = "GlobalContext";
 
 export const GlobalProvider = (props: any) => {
-  const [state, setState] = useState(null);
+  const [state, setState] = useState<IGlobalState>({
+    isAuth: accessToken === null ? false : true,
+    userId: null,
+  });
 
   const value = useMemo(() => {
     return {
@@ -26,24 +43,12 @@ export const GlobalProvider = (props: any) => {
   return <GlobalContext.Provider value={value} {...props} />;
 };
 
-export function useGlobalContext(): {
-  setState: (
-    patch:
-      | Partial<IGlobalState>
-      | ((prevState: IGlobalState) => Partial<IGlobalState>)
-  ) => void;
-  state: IGlobalState;
-} {
+export function useGlobalContext(): IGlobalContext {
   const context = useContext(GlobalContext);
 
   if (context === undefined) {
     throw new Error("useGlobalContext must be used within a GlobalProvider");
   }
 
-  const { globalState, setGlobalState } = context;
-
-  return {
-    state: globalState,
-    setState: setGlobalState,
-  };
+  return context;
 }

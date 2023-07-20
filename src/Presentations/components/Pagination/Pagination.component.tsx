@@ -24,6 +24,7 @@ const paginationCss = {
     height: "32px",
     borderRadius: "4px",
     transition: "all 0.3s ease-in-out",
+    cursor: "pointer",
   }),
   btnActive: css({
     border: "1px solid #DFE3E8",
@@ -37,6 +38,7 @@ const paginationCss = {
     borderRadius: "4px",
     color: "var(--color-black)",
     transition: "all 0.3s ease-in-out",
+    cursor: "pointer",
   }),
   paginationActive: css({
     color: "var(--color-teal)",

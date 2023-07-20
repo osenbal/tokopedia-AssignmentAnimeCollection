@@ -15,7 +15,7 @@ const HomePage: FC = () => {
   } = IndexViewModel();
 
   return (
-    <>
+    <article className="container_home">
       <section>
         <CardListAnimeTrending
           listAnimeTrending={listAnimeTrending}
@@ -32,7 +32,7 @@ const HomePage: FC = () => {
           setPage={setPage}
         />
       </section>
-    </>
+    </article>
   );
 };
 

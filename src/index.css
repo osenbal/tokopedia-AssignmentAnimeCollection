@@ -26,6 +26,9 @@ body {
 }
 
 main {
+  min-height: 100vh;
+}
+.container_home {
   scroll-behavior: smooth;
   margin: 0 8px;
   margin-top: 14px;
@@ -73,14 +76,14 @@ main {
 }
 
 @media screen and (min-width: 568px) {
-  main {
+  .container_home {
     margin: 0 16px;
     margin-top: 112px;
   }
 }
 
 @media screen and (min-width: 992px) {
-  main {
+  .container_home {
     padding: 0 184px;
     margin: 0 auto;
     margin-top: 202px;

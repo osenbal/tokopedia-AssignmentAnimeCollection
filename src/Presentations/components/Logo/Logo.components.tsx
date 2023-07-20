@@ -21,7 +21,7 @@ const Logo: React.FC<LogoProps> = ({
       <img
         style={styleImg}
         className={classNameImg}
-        src="./assets/icons/ico_logoOnime.svg"
+        src="/assets/icons/ico_logoOnime.svg"
         alt="logo"
       />
     </div>

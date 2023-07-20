@@ -1,4 +1,4 @@
-export interface ICollectionAnimeDatasource {
+export interface ICollectionAnimeService {
   getCollections(): any;
   addCollection(): any;
   updateCollection(): any;

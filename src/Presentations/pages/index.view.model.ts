@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import UseAnime from "@/Domain/hooks/useAnime.context";
+import UseAnime from "@/Domain/hooks/useAnime";
 
 const IndexViewModel = () => {
   const { useAnimeList } = UseAnime();

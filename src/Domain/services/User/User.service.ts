@@ -1,18 +1,19 @@
 import { IUserService } from "@/contracts/Services/IUser.service";
 import { IUserRepository } from "@/contracts/Repositories/IUser.repository";
 import { DocumentNode } from "@apollo/client";
+import UserRepositoryImpl from "@/Data/Repositories/User.repository";
+import UserGraphqlDatasourceImpl from "@/Data/Datasources/GraphQL/User.datasource.impl";
 
 export default class UserServiceImpl implements IUserService {
-  private userRepository: IUserRepository;
   private static instance: UserServiceImpl;
+  private userDatasource = UserGraphqlDatasourceImpl.getInstance();
+  private userRepository: IUserRepository = new UserRepositoryImpl(
+    this.userDatasource
+  );
 
-  constructor(userRepository: IUserRepository) {
-    this.userRepository = userRepository;
-  }
-
-  public static getInstance(userRepository: IUserRepository): UserServiceImpl {
+  public static getInstance(): UserServiceImpl {
     if (!UserServiceImpl.instance) {
-      UserServiceImpl.instance = new UserServiceImpl(userRepository);
+      UserServiceImpl.instance = new UserServiceImpl();
     }
 
     return UserServiceImpl.instance;

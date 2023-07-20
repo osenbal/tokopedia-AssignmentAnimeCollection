@@ -123,6 +123,7 @@ const CardListAnime: React.FC<CardListAnimeProps> = ({
           {listAnime.map((anime, index) => {
             return (
               <CardAnime
+                id={anime?.id}
                 key={index}
                 color={anime?.coverImage?.color}
                 name={anime?.title?.english || anime?.title?.native}
