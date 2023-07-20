@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Deployment using netlify
+
+https://onime-tes-tokopedia.netlify.app/
+
 ## VERSION MANAGER
 
 This project use this version
